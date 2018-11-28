@@ -12,6 +12,9 @@ while True:
     # p.append(name)
     # p.append(price)
     # 上文三行等效于下文一行
-    p = price[name, price]
+    p = [name, price]
     products.append(p)
 print(products)
+
+for p in products:
+    print(p[0]) 
