@@ -20,10 +20,12 @@ print(products)
 for p in products:
     print(p[0])
 
-
-with open('/Users/kevin/Desktop/products/products.csv', 'w') as f:  # 如果没有创建待写入的txt文档，会自动创建
+# 注意对文档的 写入 与 读取 都要涉及编码问题
+# 这里的with是python自带的功能，在with框架中，自动关闭close 文件
+with open('/Users/kevin/Desktop/products/products.csv', 'w', encoding='utf-8') as f:  # 如果没有创建待写入的txt文档，会自动创建
     # csv用来存储专门的文件资料
-#这里的with是python自带的功能，在with框架中，自动关闭close 文件
+    # encoding='utf-8'用来使得编码正确
+    f.write('商品,价格\n')
     for p in products:
         #f.write(p[0] + ',' + p[1] + '\n')
         f.write(p[0] + ',' + str(p[1]) + '\n')
