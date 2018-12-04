@@ -1,8 +1,24 @@
 # -*- coding:utf-8 -*-
 # 建立二维列表，即列表中一项中套着另一个列表
 
-# 读取档案
+import os
+
+# 读取文档
 products = []
+
+if os.path.isfile('/Users/kevin/Desktop/products/products.csv'): # 检查文档是否存在
+    print('存在')
+    with open('/Users/kevin/Desktop/products/products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,价格' in line:
+                continue  # 继续
+            # 开始split切割
+            name, price = line.strip().split(',')  # 用逗号作为分隔符
+            products.append([name, price])
+    print(products)
+else:
+    print('不存在')
+
 with open('/Users/kevin/Desktop/products/products.csv', 'r', encoding='utf-8') as f:
     for line in f:
         if '商品,价格' in line:
