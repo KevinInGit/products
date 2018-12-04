@@ -1,8 +1,18 @@
 # -*- coding:utf-8 -*-
 # 建立二维列表，即列表中一项中套着另一个列表
 
-# 用来存：商品名和价格
+# 读取档案
 products = []
+with open('/Users/kevin/Desktop/products/products.csv', 'r', encoding='utf-8') as f:
+    for line in f:
+        if '商品,价格' in line:
+            continue  # 继续
+        #开始split切割
+        name, price = line.strip().split(',')  # 用逗号作为分隔符
+        products.append([name, price])
+print(products)
+
+# 使用者输入：用来存 商品名和价格
 while True:
     name = input('请输入商品名称：')
     if name == 'q':
@@ -17,9 +27,11 @@ while True:
     products.append(p)
 print(products)
 
+# 印出所有商品购买记录
 for p in products:
     print(p[0])
 
+# 写入档案
 # 注意对文档的 写入 与 读取 都要涉及编码问题
 # 这里的with是python自带的功能，在with框架中，自动关闭close 文件
 with open('/Users/kevin/Desktop/products/products.csv', 'w', encoding='utf-8') as f:  # 如果没有创建待写入的txt文档，会自动创建
